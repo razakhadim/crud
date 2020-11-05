@@ -10,22 +10,15 @@ $user = new User();
 
 
 $result = $user->getUserById(51);
-
-$array = [];
-
-while ($results = $result->fetch_assoc()){
-    $array[] = ;
-}
-
-  
-
-
-if (isset($_GET['uid'])) {
-     $id = $_GET['uid'];
-}
-
-$result = $user->getUserById($id);
 echo $user->getFirstName();
+
+
+// if (isset($_GET['uid'])) {
+//      $id = $_GET['uid'];
+// }
+
+// $result = $user->getUserById($id);
+// echo $user->getFirstName();
 
 
  

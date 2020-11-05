@@ -71,19 +71,17 @@ class User extends Database
 
    public function getUserById($id)
    {
-     $result = $this->single("SELECT * FROM users WHERE user_id ={$id}");
-
-   //   if(is_array($result)) {
-   //   foreach ($result as $data) {
-       
-   //    $this->setFirstName($data['user_fname']);
-   //    $userFname = $data['user_fname'];
-   //    $userLname = $data['user_lname'];
-   //    $userEmailId = $data['user_email'];
-   //    $userRole = $data['user_role'];
-   //   }
-   // }
-   }
+     $resultSet = $this->single("SELECT * FROM users WHERE user_id ={$id}");
+     if($resultSet) {
+     while ($row = $resultSet->fetch_row()){
+      $this->setFirstName($row['user_fname']);
+      $this->setFirstName($row['user_fname']);
+      $this->setFirstName($row['user_fname']);
+      $this->setFirstName($row['user_fname']);
+      $this->setFirstName($row['user_fname']);
+     }
+  }
+}
 
    public function updateUser($id)
    {
