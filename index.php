@@ -46,9 +46,20 @@ $user = new User();
         echo "<td>{$userEmailId}</td>";
         echo "<td>{$userRole}</td>";
         echo "<td><a href='index.php?view={$userId}'>view </a><a href='delete.php?uid={$userId}'>delete </a><a href='update.php?uid={$userId}'> update</a></td>";
-
         echo "</tr>";
     }
+
+
+
+    $user->setFirstName('class');
+    $user->setLastName('class');
+    $user->setEmail('email@class.class');
+    $user->setPassword('class');
+    $user->setAddress ('class');
+    $user->setPhone('class');
+
+    $user->add();
+
     ?>
 
 

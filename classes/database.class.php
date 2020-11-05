@@ -64,6 +64,10 @@ class Database{
         }
     }
 
+    public function update($sql){
+        $result = $this->connect()->query($sql);
+    }
+
     //Updates image both user profile and product. Takes SQL query as paratemer
     public function updateImage($sql){
         $result = $this->connect()->query($sql);
