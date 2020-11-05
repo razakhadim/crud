@@ -38,9 +38,10 @@ class Database{
     {
         $result = $this->connect()->query($sql);
         if (!$result) {
-            echo "Something went wrong";
+            echo "Single record: Something went wrong";
         }
     }
+
 
     //fetches all the records as assoc array from a table. Takes the SQL query as parameter.
     public function allRecords($sql) {
