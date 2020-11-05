@@ -3,22 +3,23 @@
 class Product extends Database
 {
 
+    private $productId;
     private $name;
     private $description;
     private $price;
     private $count;
 
 
-    public function add($name, $description, int $price, int $count)
+    public function add()
     {
-        $sql = "INSERT INTO products (product_name, product_description, product_price, product_count) VALUES ('$name', '$description', '$price', '$count')";
+        $sql = "INSERT INTO products (product_name, product_description, product_price, product_count) VALUES ('$this->$name', '$this->description', '$this->price', '$this->count')";
         $result = $this->connect()->query($sql);
         if (!$result) {
             echo "Something went wrong";
         }
     }
 
-    public function update($name, $description, int $price, int $count) {
+    public function update() {
 
     }
 
