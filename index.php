@@ -45,7 +45,7 @@ $user = new User();
         echo "<td>{$userLname}</td>";
         echo "<td>{$userEmailId}</td>";
         echo "<td>{$userRole}</td>";
-        echo "<td><a href='index.php?view={$userId}'>view </a><a href='delete.php?uid={$userId}'>delete </a><a href='update.php?uid={$userId}'> update</a></td>";
+        echo "<td><a href='profile.php?uid={$userId}'>view </a><a href='delete.php?uid={$userId}'>delete </a><a href='update.php?uid={$userId}'> update</a></td>";
         echo "</tr>";
     }
 
@@ -58,7 +58,18 @@ $user = new User();
     $user->setAddress ('class');
     $user->setPhone('class');
 
-    $user->add();
+    $user->updateUser(69);
+
+    $user->setFirstName('two');
+    $user->setLastName('two');
+    $user->setEmail('two@class.class');
+    $user->setPassword('two');
+    $user->setAddress ('two');
+    $user->setPhone('two');
+
+    $user->updateUser(70);
+
+    var_dump($user->getUserById(70));
 
     ?>
 
