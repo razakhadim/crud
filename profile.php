@@ -14,7 +14,7 @@ $result = $user->getUserById(51);
 $array = [];
 
 while ($results = $result->fetch_assoc()){
-    $array[] = 
+    $array[] = ;
 }
 
   
