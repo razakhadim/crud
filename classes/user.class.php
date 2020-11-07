@@ -3,6 +3,7 @@
 class User extends Database
 {
 
+   private $id;
    private $fname;
    private $lname;
    private $email;
@@ -11,45 +12,89 @@ class User extends Database
    private $address;
    private $phone;
    private $profileImage;
+   private $signUpDate;
+
+  // private $currentPassword;
+   private $newPassword;
 
    //getters & setters
 
+   public function setId($id){
+      $this->id = $id;
+   }
+   public function getId(){
+      return $this->id;
+   }
+   public function setFirstName($fname)
+   {
+      $this->fname = $fname;
+   }
    public function getFirstName()
    {
       return $this->fname;
    }
-
-   public function setFirstName($fname)
+    public function setLastName($lname)
    {
-      return $this->fname = $fname;
+      $this->lname = $lname;
    }
-   public function setLastName($lname)
+   public function getLastName()
    {
-      return $this->lname = $lname;
+      return $this->lname;
    }
    public function setEmail($email)
    {
-      return $this->email = $email;
+      $this->email = $email;
+   }
+   public function getEmail()
+   {
+      return $this->email;
    }
    public function setPassword($password)
    {
-      return $this->password = $password;
+      $this->password = $password;
+   }
+   public function getPassword()
+   {
+      return $this->password;
    }
    public function setRole($role)
    {
-      return $this->role = $role;
+      $this->role = $role;
+   }
+   public function getRole()
+   {
+      return $this->role;
    }
    public function setAddress($address)
    {
-      return $this->address = $address;
+      $this->address = $address;
+   }
+   public function getAddress()
+   {
+      return $this->address;
    }
    public function setPhone($phone)
    {
-      return $this->phone = $phone;
+      $this->phone = $phone;
+   }
+   public function getPhone()
+   {
+      return $this->phone;
    }
    public function setProfileImage($profileImage)
    {
-      return $this->profileImage = $profileImage;
+      $this->profileImage = $profileImage;
+   }
+   public function getProfileImage()
+   {
+      return $this->profileImage;
+   }
+   public function setSignUpDate($signUpDate){
+      $this->signUpDate = $signUpDate;
+   }
+   public function getSignUpDate()
+   {
+      return $this->signUpDate;
    }
 
 
@@ -71,21 +116,42 @@ class User extends Database
 
    public function getUserById($id)
    {
-     $resultSet = $this->single("SELECT * FROM users WHERE user_id ={$id}");
-     if($resultSet) {
-     while ($row = $resultSet->fetch_row()){
+     $result = $this->single("SELECT * FROM users WHERE user_id ={$id}");
+
+     while ($row = $result->fetch_assoc()){
+      $this->setId($row['user_id']);
       $this->setFirstName($row['user_fname']);
-      $this->setFirstName($row['user_fname']);
-      $this->setFirstName($row['user_fname']);
-      $this->setFirstName($row['user_fname']);
-      $this->setFirstName($row['user_fname']);
-     }
+      $this->setLastName($row['user_lname']);
+      $this->setPassword($row['user_password']);
+      $this->setEmail($row['user_email']);
+      $this->setRole($row['user_role']);
+      $this->setAddress($row['user_address']);
+      $this->setPhone($row['user_contact_number']);
+      $this->setSignUpDate($row['sign_up_date']);
+      $this->setProfileImage($row['user_profile_picture']);
   }
 }
 
-   public function updateUser($id)
-   {
+   public function updateProfile($id){
       $this->update("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_address ='$this->address', user_contact_number = '$this->phone' WHERE user_id = {$id}");
+   }
+
+   public function login($email, $password) {
+      if ($email === $this->email && $password === $this->password) {
+         header("Location: /foodl/dashboard");
+      } else {
+         echo "wrong username or password";
+      }
+   }
+
+   //this function will run getUserById() which will have $this->id
+   public function changePassword($password, $newPassword){
+      $newPass = $newPassword;
+      if($password === $this->password) {
+      $this->update("UPDATE users SET user_password = {$newPass} WHERE user_id = {$this->id}");
+      } else {
+         echo "You current password is correct.";
+      }
    }
 
    public function deleteUser($id)

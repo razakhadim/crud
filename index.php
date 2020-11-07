@@ -67,7 +67,7 @@ $user = new User();
     $user->setAddress ('two');
     $user->setPhone('two');
 
-    $user->updateUser(70);
+    $user->add();
 
     var_dump($user->getUserById(70));
 

@@ -36,7 +36,7 @@ class Database{
     //Gets a single record by ID from a table. Takes SQL query as param
     public function single($sql)
     {
-        $result = $this->connect()->query($sql);
+        return $result = $this->connect()->query($sql);
         if (!$result) {
             echo "Single record: Something went wrong";
         }
@@ -66,7 +66,7 @@ class Database{
     }
 
     public function update($sql){
-        $result = $this->connect()->query($sql);
+        $this->connect()->query($sql);
     }
 
     //Updates image both user profile and product. Takes SQL query as paratemer
