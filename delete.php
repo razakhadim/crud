@@ -16,4 +16,3 @@ if (isset($_GET['uid'])) {
      $id = $_GET['pid'];
      $product->delete($id);
 }
-

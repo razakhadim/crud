@@ -102,8 +102,7 @@ class User extends Database
    {
 
       $sql = "INSERT INTO users (user_fname, user_lname, user_password, user_email, user_address, user_contact_number) VALUES ('$this->fname', '$this->lname', '$this->password', '$this->email', '$this->address', '$this->phone')";
-      $result = $this->connect()->query($sql);
-
+      $result = $this->stmt($sql);
       if (!$result) {
          echo "database Something went wrong";
       }
@@ -116,7 +115,7 @@ class User extends Database
 
    public function getUserById($id)
    {
-     $result = $this->single("SELECT * FROM users WHERE user_id ={$id}");
+    $result = $this->stmt("SELECT * FROM users WHERE user_id ={$id}");
 
      while ($row = $result->fetch_assoc()){
       $this->setId($row['user_id']);
@@ -133,7 +132,8 @@ class User extends Database
 }
 
    public function updateProfile($id){
-      $this->update("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_address ='$this->address', user_contact_number = '$this->phone' WHERE user_id = {$id}");
+      $this->stmt("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_email = '$this->email', user_address ='$this->address', user_contact_number = '$this->phone' WHERE user_id = {$id}");
+
    }
 
    public function login($email, $password) {
@@ -146,9 +146,9 @@ class User extends Database
 
    //this function will run getUserById() which will have $this->id
    public function changePassword($password, $newPassword){
-      $newPass = $newPassword;
+    //  $newPass = $newPassword;
       if($password === $this->password) {
-      $this->update("UPDATE users SET user_password = {$newPass} WHERE user_id = {$this->id}");
+      $this->stmt("UPDATE users SET user_password = {$newPassword} WHERE user_id = {$this->id}");
       } else {
          echo "You current password is correct.";
       }
@@ -156,6 +156,13 @@ class User extends Database
 
    public function deleteUser($id)
    {
-      $this->delete("DELETE FROM users where user_id =" . $id);
+      $this->stmt("DELETE FROM users where user_id =" . $id);
    }
+
+   function resetUser() {
+      foreach ($this as $key => $value) {
+          unset($this->$key);
+      }
+  }
 }
+

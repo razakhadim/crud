@@ -11,41 +11,28 @@ class Database{
     private $password = DB_PASSWORD;
     private $dbname = DB_DATABASE;
 
-    // public function __construct()
-    // {
-    //     $this->connect();
-    // }
-
     public function connect(){
         
         $connection = new mysqli($this->host,$this->user,$this->password,$this->dbname );
-
-        // if($connection) {
-        //     echo "connection is OK";
-        // }
-
         if($connection->connect_errno) {
             die ("Unable to connect to Database " . $connection->connect_error);
         } else {
-
          return $connection;
         }
 
     }
 
-    //Gets a single record by ID from a table. Takes SQL query as param
-    public function single($sql)
-    {
-        return $result = $this->connect()->query($sql);
-        if (!$result) {
-            echo "Single record: Something went wrong";
-        }
+    //statement to connect to databse and get sql query
+    public function stmt($sql){
+     return $result =  $this->connect()->query($sql);
+      if (!$result) {
+          echo "Database Error, see stmt()";
+      }
     }
-
 
     //fetches all the records as assoc array from a table. Takes the SQL query as parameter.
     public function allRecords($sql) {
-            $result = $this->connect()->query($sql);
+            $result = $this->stmt($sql);
             $numRows = $result->num_rows;
     
             if ($numRows > 0) {
@@ -56,25 +43,16 @@ class Database{
             return $data;
     }
 
-    //deletes a record from a table. Takes the SQL query as parameter
-    public function delete($sql)
-    {
-         $result = $this->connect()->query($sql);
-        if (!$result) {
-            echo "Something went wrong";
-        }
-    }
+    // public function update($sql){
+    //     $this->connect()->query($sql);
+    // }
 
-    public function update($sql){
-        $this->connect()->query($sql);
-    }
-
-    //Updates image both user profile and product. Takes SQL query as paratemer
-    public function updateImage($sql){
-        $result = $this->connect()->query($sql);
-        if(!$result) {
-            echo "Something went wrong";
-        }
-    }
+    // //Updates image both user profile and product. Takes SQL query as paratemer
+    // public function updateImage($sql){
+    //     $result = $this->connect()->query($sql);
+    //     if(!$result) {
+    //         echo "Something went wrong";
+    //     }
+    // }
 
 }

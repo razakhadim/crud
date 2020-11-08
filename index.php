@@ -49,28 +49,6 @@ $user = new User();
         echo "</tr>";
     }
 
-
-
-    $user->setFirstName('class');
-    $user->setLastName('class');
-    $user->setEmail('email@class.class');
-    $user->setPassword('class');
-    $user->setAddress ('class');
-    $user->setPhone('class');
-
-    $user->updateUser(69);
-
-    $user->setFirstName('two');
-    $user->setLastName('two');
-    $user->setEmail('two@class.class');
-    $user->setPassword('two');
-    $user->setAddress ('two');
-    $user->setPhone('two');
-
-    $user->add();
-
-    var_dump($user->getUserById(70));
-
-    ?>
+?>
 
 
