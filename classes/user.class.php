@@ -160,6 +160,8 @@ class User extends Database
    public function deleteUser($id)
    {
       $this->stmt("DELETE FROM users where user_id =" . $id);
+      $redirectUrl = "/oop/index.php?deleted={$id}";
+      header('Location: '.$redirectUrl);
    }
 
    function resetUser() {
