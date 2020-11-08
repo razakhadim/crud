@@ -133,6 +133,9 @@ class User extends Database
 
    public function updateProfile($id){
       $this->stmt("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_email = '$this->email', user_address ='$this->address', user_contact_number = '$this->phone' WHERE user_id = {$id}");
+      
+      $redirectUrl = "/oop/profile.php?uid={$id}";
+      header('Location: '.$redirectUrl);
 
    }
 

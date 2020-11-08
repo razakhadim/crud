@@ -32,22 +32,9 @@ if (isset($_GET['uid'])) {
     $id = $_GET['uid'];
 }
 
+//create a new user object and get details of the user by id
 $user = new User();
 $user->getUserById($id);
-
-
-
-// $query = "SELECT * FROM users WHERE user_id ={$update_user_id}";
-// $usersQuery = mysqli_query($connection, $query);
-
-// while ($row = mysqli_fetch_array($usersQuery)) {
-//     $db_userID = $row['user_id'];
-//     $db_userFName = $row['user_fname'];
-//     $db_userLName = $row['user_lname'];
-//     $db_userPassword = $row['user_password'];
-//     $db_userEmail = $row['user_email'];
-//     $db_userRole = $row['user_role'];
-// }
 
 //get the form submission and add them as variables. Not including password field because user may not want to update their password.
 
@@ -56,8 +43,9 @@ if (isset($_POST['submit'])) {
     $user->setFirstName($_POST ['firstname']);
     $user->setLastName($_POST['lastname']);
     $user->setEmail($_POST ['email']);
+    $user->setAddress($_POST['address']);
+    $user->setPhone($_POST ['phone']);
     $user->updateProfile($id);
-
 }
 
 //to update the password and validate current password
