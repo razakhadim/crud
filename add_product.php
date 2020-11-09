@@ -35,45 +35,33 @@ require_once ("../oop/includes/header.php"); ?>
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Add a Product</h1>
                             </div>
-                            <form name = "userRegistration" class="user" method="POST" action="includes/signup.php">
+                            <form name = "add_product" method="POST" action="includes/add_product.php">
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="fname" id="exampleFirstName" placeholder="First Name" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="lname" id="exampleLastName" placeholder="Last Name" required>
-                                    </div>
+                                    <div class="col-sm-12  mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" name="name" id="exampleFirstName" placeholder="Product name" required>
+                                    </div>        
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <textarea rows="4" cols="73" name="description" id="exampleFirstName" placeholder="Product description" required></textarea>
+                                    </div>        
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" name="password1" id="exampleInputPassword" placeholder="Password" required> 
+                                        <input type="number" class="form-control form-control-user" name="price" id="exampleInputEmail" placeholder="Price" required>
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" name="password2" id="exampleRepeatPassword" placeholder="Repeat Password" required>
+                                        <input type="number" class="form-control form-control-user" name="count" id="count" placeholder="Quantity">
                                     </div>
                                 </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="email" class="form-control form-control-user" name="email" id="exampleInputEmail" placeholder="Email" required>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="phone" id="phone" placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-12 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="address" id="address" placeholder="Address">
-                                    </div>
-
-                                </div>
-                                <button name="register" type="submit" class="btn btn-primary btn-user btn-block">Register Account</button>
+                                <button name="add_product" type="submit" class="btn btn-primary btn-user btn-block">Add Product</button>
                                 <hr>
             
                             </form>
                             <div class="text-center">
-                                <a class="small" href="login.php">Already have an account? Login!</a>
+                                <a class="small" href="login.php">View all your products</a>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 <?php
 
-require_once("config/config.php");
+require_once("config.php");
+
 
 class Database{
 
@@ -11,6 +12,11 @@ class Database{
     private $password = DB_PASSWORD;
     private $dbname = DB_DATABASE;
 
+    // public function __construct() {
+
+    //     session_start();
+
+    // }
     public function connect(){
         
         $connection = new mysqli($this->host,$this->user,$this->password,$this->dbname );

@@ -1,5 +1,4 @@
 <?php
-
 class User extends Database
 {
 
@@ -131,25 +130,54 @@ class User extends Database
   }
 }
 
+
    public function updateProfile($id){
-      $this->stmt("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_email = '$this->email', user_address ='$this->address', user_contact_number = '$this->phone' WHERE user_id = {$id}");
+      $this->stmt("UPDATE users SET user_fname = '$this->fname', user_lname = '$this->lname', user_email = '$this->email', user_address ='$this->address', user_contact_number = '$this->phone', user_role ='$this->role' WHERE user_id = {$id}");
       
       $redirectUrl = "/oop/profile.php?uid={$id}";
       header('Location: '.$redirectUrl);
 
    }
 
+
    public function login($email, $password) {
-      if ($email === $this->email && $password === $this->password) {
-         header("Location: /foodl/dashboard");
+      $result = $this->stmt("SELECT * FROM users WHERE user_email ='$email' AND user_password ='$password'");
+      $numRows = $result->num_rows;
+
+      if ($numRows == 1) {
+         $_SESSION['email'] = $email;
+         header("Location: ../index.php");    
       } else {
          echo "wrong username or password";
       }
    }
 
+   public function session($email){
+    return $result = $this->stmt("SELECT * FROM users WHERE user_email ={$email}");
+
+      while ($row = $result->fetch_assoc()){
+      $_SESSION['id'] = $this->setId($row['user_id']);
+      $_SESSION['email'] = $this->setEmail($row['user_email']);
+      $_SESSION['role'] = $this->setRole($row['user_role']);
+     }
+   }
+
+   public function isAdmin($email) {
+   $result = $this->stmt("SELECT * FROM users where user_email = {$email} AND user_role = 'admin'");
+ }
+   // public function ifAdmin() {
+
+   // }
+   // public function checkIfLoggedIn() {
+   //    if ($_SESSION['isLoggedIn']) {
+   //       return true;
+   //    } else {
+   //       return false;
+   //    }
+   // }
+
    //this function will run getUserById() which will have $this->id
    public function changePassword($password, $newPassword){
-    //  $newPass = $newPassword;
       if($password === $this->password) {
       $this->stmt("UPDATE users SET user_password = {$newPassword} WHERE user_id = {$this->id}");
       } else {

@@ -15,9 +15,9 @@ if (isset($_POST['register'])) {
         $user->add();
         
         echo "<script>alert('Account created.');
-        window.location.href='register.php?created';
+        window.location.href='../register.php?created';
         </script>";
-        $user->resetUser();
+     //   $user->resetUser();
     }
 } else {
     echo "<script>alert('All fields are required.');

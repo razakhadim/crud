@@ -4,14 +4,14 @@ require_once ("../oop/includes/header.php");
 //require_once ('class-loader.inc.php');
 //require_once ("database.class.php");
 require_once ("classes/database.class.php");
-require_once ("classes/user.class.php");
+require_once ("classes/product.class.php");
 
 
 
 // $db = new Database();
 // //$db->connect();
 
-$user = new User();
+$product = new Product();
 
 //check if user is logged in
 if(!isset($_SESSION['email'])) { 
@@ -46,21 +46,21 @@ if(!isset($_SESSION['email'])) {
 
    // $table = 'users';
    // $datas = $user->getAllUsers();
-        foreach ($user->getAllUsers() as $data) {
+        foreach ($product->getAllProducts() as $data) {
        
-        $userId = $data['user_id'];
-        $userFname = $data['user_fname'];
-        $userLname = $data['user_lname'];
-        $userEmailId = $data['user_email'];
-        $userRole = $data['user_role'];
+        $productId = $data['product_id'];
+        $productName = $data['product_name'];
+        $productDescription = $data['product_description'];
+        $productPrice = $data['product_price'];
+        $productCount = $data['product_count'];
 
         echo "<tr>";
-        echo "<td>{$userId}</td>";
-        echo "<td>{$userFname}</td>";
-        echo "<td>{$userLname}</td>";
-        echo "<td>{$userEmailId}</td>";
-        echo "<td>{$userRole}</td>";
-        echo "<td><a href='profile.php?uid={$userId}'>view </a><a href='delete.php?uid={$userId}'>delete </a><a href='update.php?uid={$userId}'> update</a></td>";
+        echo "<td>{$productId}</td>";
+        echo "<td>{$productName}</td>";
+        echo "<td>{$productDescription}</td>";
+        echo "<td>{$productPrice}</td>";
+        echo "<td>{$productCount}</td>";
+        echo "<td><a href='view_product.php?pid={$productId}'>view </a><a href='delete.php?pid={$productId}'>delete </a><a href='update_product.php?pid={$productId}'> update</a></td>";
         echo "</tr>";
        } 
     //   if ($_SESSION['user_role'] === 'foodling')

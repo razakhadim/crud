@@ -1,13 +1,9 @@
-
+<?php 
+session_start();
+?>
 <!-- Website Header
 By: Raza Khadim
 Date: 07/10/2020 -->
-
-<!-- start session added here as header is added to all pages -->
-<?php 
-//session_start();
-//include("../config/init.php");
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,6 +28,9 @@ Date: 07/10/2020 -->
     <ul class="navbar-nav">
         <li class="nav-item">
         <a class="nav-link" href="/foodl/dashboard">Dashboard </a>
+      </li>
+      <li class="nav-item">
+      <?php if(isset($_SESSION['email'])) { ?> <a class="nav-link" href = "includes/signout.php"> Logout </a> <?php } else { ?> <a class="nav-link" href ="login.php"> Login / Register</a> <?php } ?>
       </li>
      <!-- passing dynamic data using session variable -->
       <li class="nav-item">

@@ -13,27 +13,26 @@ Date: 07/10/202 -->
 <body>
 
 <?php
-// include "../includes/header.php";
-// include "../includes/db.php";
 
+include "includes/header.php";
 include "classes/database.class.php";
 include "classes/user.class.php";
+$user = new User();
 
-//check if logged in
-// if(!isset($_SESSION['userEmail'])) {
-// echo "<script>
-// alert('You are not logged in.');
-// window.location.href='/foodl/my-account.php';
-// </script>";
+//check if user is logged in
+if(!isset($_SESSION['email'])) {
+    echo "<script>
+   alert('You are not logged in.');
+    window.location.href='login.php';
+    </script>";
+}
 
-//}
-//To get the user id from last Get and assign a variable
 if (isset($_GET['uid'])) {
     $id = $_GET['uid'];
 }
 
 //create a new user object and get details of the user by id
-$user = new User();
+
 $user->getUserById($id);
 
 //get the form submission and add them as variables. Not including password field because user may not want to update their password.
@@ -45,6 +44,7 @@ if (isset($_POST['submit'])) {
     $user->setEmail($_POST ['email']);
     $user->setAddress($_POST['address']);
     $user->setPhone($_POST ['phone']);
+    $user->setRole($_POST['role']);
     $user->updateProfile($id);
 }
 
@@ -77,6 +77,18 @@ if (isset($_POST['change_password'])) {
                             <div class="form-group">
                                 <label for="Email">Email Address</label>
                                 <input value="<?php echo $user->getEmail(); ?>" type="text" class="form-control" name="email" id="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Address">Address</label>
+                                <input value="<?php echo $user->getAddress(); ?>" type="text" class="form-control" name="address" id="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Phone">Phone</label>
+                                <input value="<?php echo $user->getPhone(); ?>" type="text" class="form-control" name="phone" id="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="Role">Role</label>
+                                <input value="<?php echo $user->getRole(); ?>" type="text" class="form-control" name="role" id="Email" disabled>
                             </div>
                             <button name="submit" type="submit" class="btn btn-primary">Update Profile</button>
                         </form>
