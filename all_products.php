@@ -30,12 +30,11 @@ if(!isset($_SESSION['email'])) {
 <table class="table table-bordered table-hover usertable">
 <thead>
     <tr>
-        <th>Id</th>
-        <th>First Name</th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Admin</th>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Product Description</th>
+        <th>Product Price</th>
+        <th>Product Count</th>
     </tr>
 </thead>
 

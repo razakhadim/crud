@@ -55,9 +55,9 @@ class Product extends Database
 
     
     public function updateProduct($productId){
-        $this->stmt("UPDATE products SET product_name = '$this->productName', product_description = '$this->ProductDescription', product_price = '$this->productPrice', product_count ='$this->productCount' WHERE product_id = {$productId}");
+        $this->stmt("UPDATE products SET product_name = '$this->productName', product_description = '$this->productDescription', product_price = '$this->productPrice', product_count ='$this->productCount' WHERE product_id = {$productId}");
         
-        $redirectUrl = "/oop/profile.php?uid={$productId}";
+        $redirectUrl = "/oop/view_product.php?pid={$productId}";
         header('Location: '.$redirectUrl);
   
      }
@@ -98,7 +98,7 @@ class Product extends Database
       header('Location: '.$redirectUrl);
     }
 
-    function resetUser() {
+    function resetProduct() {
         foreach ($this as $key => $value) {
             unset($this->$key);
         }

@@ -39,12 +39,13 @@ $product->getProductById($productId);
 
 //get the form submission and add them as variables. Not including password field because user may not want to update their password.
 
-if (isset($_POST['add_product'])) {
+if (isset($_POST['update_product'])) {
 
     $product->setProductName($_POST ['name']);
     $product->setProductDescription($_POST['description']);
     $product->setProductPrice($_POST ['price']);
     $product->setProductCount($_POST['count']);
+    
     $product->updateProduct($productId);
 }
 
@@ -75,7 +76,7 @@ if (isset($_POST['add_product'])) {
                                 <input value="<?php echo $product->getProductCount(); ?>" type="text" class="form-control" name="count" id="count">
                             </div>
                           
-                            <button name="add_product" type="submit" class="btn btn-primary">Update Profile</button>
+                            <button name="update_product" type="submit" class="btn btn-primary">Update Profile</button>
                         </form>
                     </div>
                 </div>
